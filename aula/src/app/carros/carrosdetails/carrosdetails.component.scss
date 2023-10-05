@@ -1,0 +1,22 @@
+p{
+    font-weight: 700;
+    font-size: 2rem;
+    font-family:'Trebuchet MS', Arial, sans-serif;
+    color: #311459;
+
+}
+h1{
+    color: #311459;
+}
+.carroDetailsClass{
+    text-align: center; /* Centraliza o texto dentro do container */
+    padding: 20px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}

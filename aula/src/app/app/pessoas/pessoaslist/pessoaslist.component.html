@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <thead>
+            <th colspan="4">ID:</th>
+            <th colspan="4">Nome:</th>
+            <th colspan="4">Idade:</th>        
+    </thead>
+    <tbody>
+        <tr class="baixo" *ngFor = "let pessoa of lista" >
+            <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.id}}</th>
+            <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.nome}}</th>
+            <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.idade}}</th>
+        </tr>
+    </tbody>
+</table>

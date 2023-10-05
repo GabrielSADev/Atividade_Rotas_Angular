@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.divLogin{
+    text-align: center; /* Centraliza o texto dentro do container */
+    padding: 20px;
+    background-color: #311459;
+    color: white;
+    height: 100vh;
+}
+
+p{
+    font-weight: 700;
+    font-size: 2rem;
+    font-family:'Trebuchet MS', Arial, sans-serif;
+}
