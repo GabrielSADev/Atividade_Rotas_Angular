@@ -1,14 +1,29 @@
+<input type="button" value="Nova Pessoa" class="btn btn-dark" (click)="abrirModal(abc)">
+<br>
+<br>
+
 <table class="table table-striped">
     <thead>
-            <th colspan="4">ID:</th>
             <th colspan="4">Nome:</th>
             <th colspan="4">Idade:</th>        
     </thead>
     <tbody>
-        <tr class="baixo" *ngFor = "let pessoa of lista" >
-            <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.id}}</th>
+        <tr class="baixo" *ngFor = "let pessoa of lista; let i = index" >
             <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.nome}}</th>
             <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.idade}}</th>
         </tr>
     </tbody>
 </table>
+
+<ng-template #abc let-modal>
+	<div class="modal-header">
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-pessoasdetails (retorno)="addNaLista($event)" ></app-pessoasdetails>
+            
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>

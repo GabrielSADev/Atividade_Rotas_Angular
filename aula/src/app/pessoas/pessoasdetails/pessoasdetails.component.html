@@ -3,12 +3,10 @@
     <br>
     <br>
     <p>Digite o nome da Pessoa:</p>
-    <input type="text" name="NomePessoa" placeholder="Nome" id="">
-    <br>
+    <input type="text" placeholder="Nome" [(ngModel)]="pessoa.nome">
     <br>
     <p>Digite a idade da Pessoa:</p>
-    <input type="text" name="IdadePessoa" placeholder="Idade" id="">
+    <input type="text" placeholder="Idade" [(ngModel)]="pessoa.idade">
     <br>
-    <br>
-    <input type="button" value="Adicionar" class="btn btn-dark">
+    <input type="button" value="Adicionar" class="btn btn-dark" (click)="salvar()">
 </div>

@@ -1,14 +1,29 @@
+<input type="button" value="Novo Livro" class="btn btn-dark" (click)="abrirModal(abc)">
+<br>
+<br>
+
 <table class="table table-striped">
     <thead>
-        <th>ID:</th>
         <th>Autor:</th>
         <th>Titulo do Livro: </th>
     </thead>
     <tbody>
         <tr class="baixoLivro" *ngFor = "let Livros of listaLivros">
-            <th>{{Livros.id}}</th>
             <th>{{Livros.autor}}</th>
             <th>{{Livros.titulo}}</th>
         </tr>
     </tbody>
 </table>
+
+<ng-template #abc let-modal>
+	<div class="modal-header">
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-livrosdetails (retorno)="addNaLista($event)" ></app-livrosdetails>
+            
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>

@@ -1,12 +1,12 @@
 <div class="livroDetailClass">
     <h1>Adicionar um novo Livro 📜</h1>
     <br>
+    <br>
     <p>Digite o nome do Autor:</p>
-    <input type="text" name="nomeAutor" placeholder="Autor" id="">
+    <input type="text" placeholder="Autor" [(ngModel)]="livros.autor">
     <br>
     <p>Digite o título do Livro:</p>
-    <input type="text" name="tituloLivro" placeholder="Título do Livro" id="">
+    <input type="text" placeholder="Título do Livro" [(ngModel)]="livros.titulo">
     <br>
-    <br>
-    <input type="button" value="Adicionar Livro" class="btn btn-dark">
+    <input type="button" value="Adicionar Livro" class="btn btn-dark"  (click)="salvar()">
 </div>

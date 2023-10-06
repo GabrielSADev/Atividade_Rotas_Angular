@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Livros } from './livros';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-livroslist',
@@ -9,19 +10,18 @@ import { Livros } from './livros';
 export class LivroslistComponent {
   listaLivros: Livros[] =[];
 
+  modalService = inject(NgbModal);
+
   constructor(){
     let livros1: Livros = new Livros();
-    livros1.id = 1;
     livros1.autor = 'Stephen'
     livros1.titulo = 'TorreNegra'
 
     let livros2: Livros = new Livros();
-    livros2.id = 2;
     livros2.autor = 'David'
     livros2.titulo = 'CleanCode'
 
     let livros3: Livros = new Livros();
-    livros3.id = 3;
     livros3.autor = 'Laurence'
     livros3.titulo = 'PercyJackson'
 
@@ -30,4 +30,11 @@ export class LivroslistComponent {
     this.listaLivros.push(livros3);
   }
 
+  abrirModal(abc: any){
+    this.modalService.open(abc, { size: 'lg' });
+  }
+  addNaLista(livros: Livros){
+    this.listaLivros.push(livros);
+    this.modalService.dismissAll();
+  }
 }

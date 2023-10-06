@@ -14,6 +14,7 @@ import { CarroslistComponent } from './carros/carroslist/carroslist.component';
 import { LivroslistComponent } from './livros/livroslist/livroslist.component';
 import { CarrosdetailsComponent } from './carros/carrosdetails/carrosdetails.component';
 import { LivrosdetailsComponent } from './livros/livrosdetails/livrosdetails.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LivrosdetailsComponent } from './livros/livrosdetails/livrosdetails.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

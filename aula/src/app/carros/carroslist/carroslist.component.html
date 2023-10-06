@@ -1,14 +1,29 @@
+<input type="button" value="Novo Carro" class="btn btn-dark" (click)="abrirModal(abc)">
+<br>
+<br>
+
 <table class="table table-striped">
     <thead>
-            <th>ID:</th>
             <th>Nome:</th>
             <th>Ano:</th>        
     </thead>
     <tbody>
-        <tr class="baixoCarro" *ngFor = "let carros of listaCarros">
-            <th>{{carros.id}}</th>
+        <tr class="baixoCarro" *ngFor = "let carros of listaCarros; let i = index">
             <th>{{carros.nome}}</th>
             <th>{{carros.ano}}</th>
         </tr>
     </tbody>
 </table>
+
+<ng-template #abc let-modal>
+	<div class="modal-header">
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-carrosdetails (retorno)="addNaLista($event)" ></app-carrosdetails>
+            
+	</div>
+	<div class="modal-footer">
+	</div>
+</ng-template>
