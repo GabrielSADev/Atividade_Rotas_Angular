@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Livros } from './livros';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LivroService } from 'src/app/services/livro.service';
 
 @Component({
   selector: 'app-livroslist',
@@ -10,31 +11,55 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class LivroslistComponent {
   listaLivros: Livros[] =[];
 
+  livroSelecionadoParaEdicao: Livros = new Livros();
+  indiceSelecionadoParaEdicao!: number;
+
   modalService = inject(NgbModal);
+  livroService = inject(LivroService);
 
   constructor(){
-    let livros1: Livros = new Livros();
-    livros1.autor = 'Stephen'
-    livros1.titulo = 'TorreNegra'
-
-    let livros2: Livros = new Livros();
-    livros2.autor = 'David'
-    livros2.titulo = 'CleanCode'
-
-    let livros3: Livros = new Livros();
-    livros3.autor = 'Laurence'
-    livros3.titulo = 'PercyJackson'
-
-    this.listaLivros.push(livros1);
-    this.listaLivros.push(livros2);
-    this.listaLivros.push(livros3);
+    this.listAll();
   }
 
-  abrirModal(abc: any){
-    this.modalService.open(abc, { size: 'lg' });
+  listAll(){
+    this.livroService.listAll().subscribe({
+      next: listaLivros => {
+        this.listaLivros = listaLivros;
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+    }
+  });
+
   }
-  addNaLista(livros: Livros){
-    this.listaLivros.push(livros);
-    this.modalService.dismissAll();
+
+  exemploErro(){
+    this.livroService.exemploErroLivro().subscribe({
+      next: listaLivros => { // QUANDO DÁ CERTO
+        this.listaLivros = listaLivros;
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+  }
+
+  adicionar(modal: any){
+    this.livroSelecionadoParaEdicao = new Livros();
+    this.modalService.open(modal, {size: 'lg'});
+  }
+
+  editar(modal: any, livro: Livros, indice: number){
+    this.livroSelecionadoParaEdicao = Object.assign({},livro);
+    this.indiceSelecionadoParaEdicao = indice;
+
+    this.modalService.open(modal, {size: 'lg'});
+  }
+
+  addOuEditarLivros(livro: Livros){
+      this.listAll();
+      this.modalService.dismissAll();
   }
 }

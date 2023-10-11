@@ -1,16 +1,25 @@
-<input type="button" value="Nova Pessoa" class="btn btn-dark" (click)="abrirModal(abc)">
+<input type="button" value="Nova Pessoa" class="btn btn-dark" (click)="adicionar(abc)">
 <br>
 <br>
 
 <table class="table table-striped">
     <thead>
-            <th colspan="4">Nome:</th>
-            <th colspan="4">Idade:</th>        
+        <th scope="col">#ID</th>
+        <th scope="col">Nome:</th>
+        <th scope="col">Idade:</th>
+        <th scope="col">Ações:</th>      
     </thead>
     <tbody>
         <tr class="baixo" *ngFor = "let pessoa of lista; let i = index" >
-            <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.nome}}</th>
-            <th *ngIf = "pessoa.idade > 30" colspan="4">{{pessoa.idade}}</th>
+            <th scope="row">{{ pessoa.id }}</th>
+            <th colspan="4">{{pessoa.nome}}</th>
+            <th colspan="4">{{pessoa.idade}}</th>
+            <th colspan="4">
+        <input type="button" value="Editar" class="btn btn-warning"  (click)="editar(abc, pessoa, i)">
+            </th>
+            <th colspan="4">
+        <input type="button" value="Excluir" class="btn btn-danger" >
+            </th>
         </tr>
     </tbody>
 </table>
@@ -21,7 +30,7 @@
 	</div>
 	<div class="modal-body">
 		
-        <app-pessoasdetails (retorno)="addNaLista($event)" ></app-pessoasdetails>
+        <app-pessoasdetails [pessoa]="pessoaSelecionadaParaEdicao" (retorno)="addOuEditarPessoa($event)" ></app-pessoasdetails>
             
 	</div>
 	<div class="modal-footer">

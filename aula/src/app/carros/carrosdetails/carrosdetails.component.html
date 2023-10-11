@@ -2,10 +2,10 @@
     <h1>Adicionar um novo Carro 🚓</h1>
     <br>
     <p>Digite o nome do Carro:</p>
-    <input type="text" name="NomeCarro" placeholder="Carro" [(ngModel)]="carros.nome">
+    <input type="text" name="NomeCarro" placeholder="Carro" [(ngModel)]="carro.nome">
     <br>
     <p>Digite o ano do Carro:</p>
-    <input type="text" name="AnoCarro" placeholder="Ano" [(ngModel)]="carros.ano">
+    <input type="text" name="AnoCarro" placeholder="Ano" [(ngModel)]="carro.ano">
     <br>
     <br>
     <input type="button" value="Adicionar" class="btn btn-dark" (click)="salvar()">

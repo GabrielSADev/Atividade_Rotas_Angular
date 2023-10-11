@@ -1,16 +1,25 @@
-<input type="button" value="Novo Livro" class="btn btn-dark" (click)="abrirModal(abc)">
+<input type="button" value="Novo Livro" class="btn btn-dark" (click)="adicionar(abc)">
 <br>
 <br>
 
 <table class="table table-striped">
     <thead>
-        <th>Autor:</th>
-        <th>Titulo do Livro: </th>
+        <th scope="col">#ID</th>
+        <th scope="col">Autor:</th>
+        <th scope="col">Titulo do Livro:</th>
+        <th scope="col">Ações:</th>  
     </thead>
     <tbody>
-        <tr class="baixoLivro" *ngFor = "let Livros of listaLivros">
+        <tr class="baixoLivro" *ngFor = "let Livros of listaLivros; let i = index">
+            <th>{{Livros.id}}</th>
             <th>{{Livros.autor}}</th>
             <th>{{Livros.titulo}}</th>
+            <th colspan="4">
+                <input type="button" value="Editar" class="btn btn-warning"  (click)="editar(abc, Livros, i)">
+            </th>
+           <th colspan="4">
+                <input type="button" value="Excluir" class="btn btn-danger" >
+            </th>
         </tr>
     </tbody>
 </table>
@@ -21,7 +30,7 @@
 	</div>
 	<div class="modal-body">
 		
-        <app-livrosdetails (retorno)="addNaLista($event)" ></app-livrosdetails>
+        <app-livrosdetails [livro]="livroSelecionadoParaEdicao" (retorno)="addOuEditarLivros($event)" ></app-livrosdetails>
             
 	</div>
 	<div class="modal-footer">

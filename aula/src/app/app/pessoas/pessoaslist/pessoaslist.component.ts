@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Pessoa } from '../../pessoa';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PessoaService } from 'src/app/services/pessoa.service';
 
 @Component({
   selector: 'app-pessoaslist',
@@ -10,68 +11,62 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class PessoaslistComponent {
   lista: Pessoa[] = [];
 
+  pessoaSelecionadaParaEdicao: Pessoa = new Pessoa();
+  indiceSelecionadoParaEdicao!: number;
+
   modalService = inject(NgbModal);
+  pessoaService = inject(PessoaService);
 
 
   constructor(){
-    let pessoa1: Pessoa = new Pessoa();
-    pessoa1.nome = 'Novinha';
-    pessoa1.idade = 19;
-
-    let pessoa2: Pessoa = new Pessoa();
-    pessoa2.nome = 'Duble';
-    pessoa2.idade = 39;
-
-    let pessoa3: Pessoa = new Pessoa();
-    pessoa3.nome = 'Chaves';
-    pessoa3.idade = 22;
-
-    let pessoa4: Pessoa = new Pessoa();
-    pessoa4.nome = 'Quarto';
-    pessoa4.idade = 32;
-
-    let pessoa5: Pessoa = new Pessoa();
-    pessoa5.nome = 'Peitin';
-    pessoa5.idade = 8;
-
-    let pessoa6: Pessoa = new Pessoa();
-    pessoa6.nome = 'Darius';
-    pessoa6.idade = 40;
-
-    let pessoa7: Pessoa = new Pessoa();
-    pessoa7.nome = 'Yasuo';
-    pessoa7.idade = 33;
-
-    let pessoa8: Pessoa = new Pessoa();
-    pessoa8.nome = 'Gabriel';
-    pessoa8.idade = 19;
-
-    let pessoa9: Pessoa = new Pessoa();
-    pessoa9.nome = 'Laranja';
-    pessoa9.idade = 88;
-
-    let pessoa10: Pessoa = new Pessoa();
-    pessoa10.nome = 'Trompete';
-    pessoa10.idade = 39;
-
-    this.lista.push(pessoa1);
-    this.lista.push(pessoa2);
-    this.lista.push(pessoa3);
-    this.lista.push(pessoa4);
-    this.lista.push(pessoa5);
-    this.lista.push(pessoa6);
-    this.lista.push(pessoa7);
-    this.lista.push(pessoa8);
-    this.lista.push(pessoa9);
-    this.lista.push(pessoa10);
+    this.listAll();
   }
 
-  abrirModal(abc: any){
-    this.modalService.open(abc, { size: 'lg' });
+  listAll() {
+
+    this.pessoaService.listAll().subscribe({
+      next: lista => { // QUANDO DÁ CERTO
+        this.lista = lista;
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+
   }
 
-  addNaLista(pessoa: Pessoa){
-    this.lista.push(pessoa);
+  exemploErro() {
+
+      this.pessoaService.exemploErroPessoa().subscribe({
+        next: lista => { // QUANDO DÁ CERTO
+          this.lista = lista;
+        },
+        error: erro => { // QUANDO DÁ ERRO
+          alert('Observe o erro no console!');
+          console.error(erro);
+        }
+      });
+  }
+
+  adicionar(modal: any) {
+    this.pessoaSelecionadaParaEdicao = new Pessoa();
+
+    this.modalService.open(modal, { size: 'lg' });
+  }
+
+  editar(modal: any, pessoa: Pessoa, indice: number) {
+    this.pessoaSelecionadaParaEdicao = Object.assign({}, pessoa); //clonando o objeto se for edição...
+    this.indiceSelecionadoParaEdicao = indice;
+
+    this.modalService.open(modal, { size: 'lg' });
+  }
+
+  addOuEditarPessoa(pessoa: Pessoa) {
+
+    this.listAll();
     this.modalService.dismissAll();
+
   }
+  
 }
