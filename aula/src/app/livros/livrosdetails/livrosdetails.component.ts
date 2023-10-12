@@ -27,7 +27,17 @@ export class LivrosdetailsComponent {
       console.error(erro);
     }
    });
-
+  }
+  deletar(){
+    this.livroService.delete(this.livro.id).subscribe({
+      next: livro => {
+        this.retorno.emit(livro);
+      },
+      error: erro => {
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    })
   }
 
 }

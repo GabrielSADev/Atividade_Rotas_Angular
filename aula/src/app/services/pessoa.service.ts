@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pessoa } from '../app/pessoa';
@@ -20,6 +20,15 @@ export class PessoaService {
   save(pessoa: Pessoa): Observable<Pessoa>{
     return this.http.post<Pessoa>(this.API, pessoa);
   }
+  delete(id: number): Observable<any>{
+    let params = new HttpParams()
+    .set('id', id.toString());
+
+  return this.http.delete<any>(this.API, {params: params} ); 
+ }
+
+
+
   exemploErroPessoa(): Observable<Pessoa[]>{
     return this.http.get<Pessoa[]>(this.API + '/erro');
 

@@ -62,4 +62,17 @@ export class LivroslistComponent {
       this.listAll();
       this.modalService.dismissAll();
   }
+
+  excluir(id: number){
+    this.livroService.delete(id).subscribe({
+      next: retorno => { // QUANDO DÁ CERTO
+        alert('excluído com sucesso!');
+          this.listAll();        
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+  }
 }

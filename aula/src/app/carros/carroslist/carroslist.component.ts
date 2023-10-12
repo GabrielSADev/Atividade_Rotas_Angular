@@ -63,4 +63,17 @@ export class CarroslistComponent {
     this.modalService.dismissAll();
   }
 
+  excluir(id: number){
+    this.carroService.delete(id).subscribe({
+      next: retorno => {
+        alert('excluído com sucesso!');
+        this.listAll();        
+    },
+    error: erro => { // QUANDO DÁ ERRO
+      alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      console.error(erro);
+    }
+    });
+  }
+
 }

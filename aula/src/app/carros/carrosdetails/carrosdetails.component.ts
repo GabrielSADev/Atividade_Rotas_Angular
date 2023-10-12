@@ -28,5 +28,16 @@ export class CarrosdetailsComponent {
       }
     });
   }
+  deletar(){
+    this.carroService.delete(this.carro.id).subscribe({
+      next: carro => {
+        this.retorno.emit(carro);
+      },
+      error: erro => {
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });
+  }
 
 }

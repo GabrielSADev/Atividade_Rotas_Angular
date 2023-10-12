@@ -69,4 +69,15 @@ export class PessoaslistComponent {
 
   }
   
+  excluir(id: number){
+    this.pessoaService.delete(id).subscribe({
+      next: retorno => { // QUANDO DÁ CERTO
+        alert('excluído com sucesso!');
+          this.listAll();        
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });  }
 }

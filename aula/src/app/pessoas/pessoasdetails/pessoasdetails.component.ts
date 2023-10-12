@@ -27,7 +27,17 @@ export class PessoasdetailsComponent {
         console.error(erro);
       }
      });
-  
+  }
+  deletar(){
+    this.pessoaService.delete(this.pessoa.id).subscribe({
+      next: pessoa => { // QUANDO DÁ CERTO
+        this.retorno.emit(pessoa);
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });
   }
 
 }
